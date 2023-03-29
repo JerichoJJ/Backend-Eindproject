@@ -19,7 +19,9 @@ h2 {
 
 input[type="text"],
 input[type="password"] {
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    width: 95%;
     padding: 10px;
     margin-bottom: 20px;
     border: none;
