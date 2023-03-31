@@ -14,13 +14,15 @@
 
     <body>
         <div class="popup">
-            <form>
+
+            <form method="post">
                 <h2>Login</h2>
-                <input type="text" placeholder="Username" required>
-                <input type="password" placeholder="Password" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
                 <input type="submit" value="Login">
-                <p>Heb je geen account? <a href="signup.html">Maak een account aan.</a></p>
+                <p>Heb je geen account? <a href="signup.php">Maak een account aan.</a></p>
             </form>
+        </div>
     </body>
 </div>
 
