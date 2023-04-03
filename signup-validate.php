@@ -1,23 +1,36 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $confirmPassword = $_POST['confirmPassword'];
 
+    $errors = [];
 
-        function PasswordValidate()
-        {
-            $wachtwoord = $_POST['Password'];
-            if (strlen($wachtwoord) <= 8) {
-                echo "<p>Je wachtwoord moet minimaal 8 tekens lang zijn. </p>";
-            } elseif (!preg_match("#[0-9]+#", $wachtwoord)) {
-                echo "<p>Je wachtwoord moet minimaal 1 getal bevatten. </p>";
-            } elseif (!preg_match("#[a-zA-Z]+#", $wachtwoord)) {
-                echo "<p>Je wachtwoord Moet minimaal 1 hoofdletter bevatten. </p>";
-            }
+    if (strlen($password) < 8) {
+        $errors[] = "Your password must be at least 8 characters long.";
+    }
 
-            function PasswordCompare()
-            {
-                $wachtwoord = $_POST['Password'];
-                $wachtwoord2 = $_POST['Confirm password'];
-                if ($wachtwoord !== $wachtwoord2) {
-                    echo "<p>Wachtwoorden komen niet overeen</p>";
-                }
-            }
+    if (!preg_match("#[0-9]+#", $password)) {
+        $errors[] = "Your password must contain at least 1 number.";
+    }
+
+    if (!preg_match("#[A-Z]+#", $password)) {
+        $errors[] = "Your password must contain at least 1 uppercase letter.";
+    }
+
+    if ($password !== $confirmPassword) {
+        $errors[] = "Your passwords do not match.";
+    }
+
+    if (count($errors) > 0) {
+        echo '<div class="errors"><ul>';
+        foreach ($errors as $error) {
+            echo "<li>$error</li>";
         }
+        echo "</ul></div>";
+    } else {
+        header("Location: index.php");
+        exit();
+    }
+}
+?>
