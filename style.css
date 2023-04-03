@@ -44,21 +44,9 @@ input[type="submit"]:hover {
     background-color: #3e8e41;
 }
 
-.koptekst {
+.body {
+    color: #3e8e41;
     display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.beschrijving {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.linkjes {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 }

@@ -13,21 +13,8 @@
 <div class="body">
 
     <body>
-        <div class="koptekst">
-            <h1>dit is een titel</h1>
-        </div>
-
-        <div class="beschrijving">
-            <p>dit is de beschrijving</p>
-        </div>
-        <div class="linkjes">
-            <h1> Alle pagina's: </h1>
-            <a href="login.php">login</a>
-            <br>
-            <a href="signup.php">signup</a>
-            <br>
-            <a href="index.php">index</a>
-        </div>
+        <p>index Wordt aan gewerkt</p>
+        <a href="links.php">Hier vind je alle Pagina's</a>
     </body>
 </div>
 

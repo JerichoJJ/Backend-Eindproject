@@ -1,0 +1,15 @@
+# Ignore compiled code
+*.class
+*.jar
+*.war
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.bak
+
+# Ignore directories
+.dist/
+.vscode/
