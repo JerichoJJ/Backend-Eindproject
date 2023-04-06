@@ -1,14 +1,3 @@
-<?php
-session_start(); // Start the session
-
-// If the user is not logged in, redirect them to the login page
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: login.php');
-    exit;
-}
-
-// The user is logged in, so display the restricted content
-?>
 <!DOCTYPE html>
 <html lang="en">
 

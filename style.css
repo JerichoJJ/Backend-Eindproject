@@ -1,5 +1,7 @@
 body {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: Arial, sans-serif;
 }
 
@@ -44,9 +46,4 @@ input[type="submit"]:hover {
     background-color: #3e8e41;
 }
 
-.body {
-    color: #3e8e41;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+

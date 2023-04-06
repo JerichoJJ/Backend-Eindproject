@@ -12,19 +12,6 @@
 
 <div class="body">
 
-    <body>
-        <div class="koptekst">
-            <h1>dit is een titel</h1>
-        </div>
-
-        <div class="beschrijving">
-            <p>dit is de beschrijving</p>
-        </div>
-
-        <div class="bilboard">
-            <h2>Bilboard Top 100</h2>
-        </div>
-
         <div class="linkjes">
             <h1> Alle huidige pagina's: </h1>
             <a href="login.php">login</a>
