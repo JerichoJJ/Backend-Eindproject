@@ -1,20 +1,21 @@
-/* Song database */]
-CREATE DATABASE bilboard_songs;
+/* bilboard database */
+CREATE DATABASE billboard_songs;
 
-USE bilboard_songs;
+USE billboard_songs;
 
-CREATE TABLE Hot100 (
-  id INT NOT NULL AUTO_INCREMENT,
-  title VARCHAR(255) NOT NULL,
-  artist VARCHAR(255) NOT NULL,
-  featuring VARCHAR(255),
-  likes INT DEFAULT 0,
-  dislikes INT DEFAULT 0,
-  PRIMARY KEY (id)
+CREATE TABLE hot100 (
+id INT NOT NULL AUTO_INCREMENT,
+title VARCHAR(255) NOT NULL,
+artist VARCHAR(255) NOT NULL,
+featuring VARCHAR(255),
+link VARCHAR(255) NOT NULL,
+PRIMARY KEY (id)
 );
 
 /*
 insert voorbeeld:
-INSERT INTO songs (title, artist, featuring, likes, dislikes)
-VALUES ('Shape of You', 'Ed Sheeran', NULL, 0, 0);
+INSERT INTO hot100 (title, artist, featuring, link)
+VALUES ('Shape of You', 'Ed Sheeran', NULL, 'https://www.example.com/viewcount');
 */
+INSERT INTO hot100 (title, artist, featuring, link)
+VALUES ('Shape of You', 'Ed Sheeran', NULL, 'https://www.example.com/viewcount');
