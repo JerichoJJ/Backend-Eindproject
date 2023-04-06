@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
-
 <body>
     <div class="popup">
         <form method="POST">
@@ -23,5 +21,4 @@
     </div>
     <?php include("signup-validate.php"); ?>
 </body>
-
 </html>

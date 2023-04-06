@@ -1,7 +1,7 @@
 <?php
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+$username = $_POST['username2'];
+$password = $_POST['password2'];
 
 $servername = "localhost";
 $dbname = "gebruiker_data";
@@ -11,7 +11,7 @@ $password_db = "";
 $dsn = "mysql:host=$servername;dbname=$dbname";
 $pdo = new PDO($dsn, $username_db, $password_db);
 
-$pdo->setAttribute(PDO::ATE_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
 $stmt->bindParam(":username", $username);
