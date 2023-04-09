@@ -20,6 +20,7 @@
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <input type="submit" value="Log in">
+                <p>Heb je geen account? <a href="signup.php">Maak een account aan.</a></p>
             </form>
 
         </div>

@@ -1,3 +1,31 @@
+<?php
+/*The code appears to be displaying data from a MySQL database table called "hot100". It first sets up a connection to the database using PDO and displays a message indicating whether the connection was successful or not.
+
+The code then runs a query to fetch all the data from the "hot100" table and stores it in an array called $songs. It then iterates over this array and displays the data in an HTML table format.
+
+The code also includes a link to the "links.php" page.
+
+The code looks well-structured and follows best practices for database connection and query execution using PDO. However, some improvements can be made to make the code more secure and maintainable:
+
+Use prepared statements to prevent SQL injection attacks.
+
+Do not hardcode the database credentials in the code. Store them in a separate configuration file and include it in the code.
+
+Use error handling to handle any errors that may occur during the database connection or query execution.
+
+Use meaningful variable names to make the code more readable.
+
+Use CSS classes to style the HTML elements.
+
+Overall, the code looks good, but these improvements can help make the code more secure, maintainable, and readable.*/
+session_start(); // Start the session
+
+if (!isset($_SESSION['loggedin'])) {
+    header('Location: login.php');
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,13 +39,11 @@
 </head>
 <body>
 <?php
-    // Database credentials
     $host = "localhost";
     $dbname = "billboard_songs";
     $username = "root";
     $password = "";
 
-    // Create a PDO instance
     try {
         $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -26,11 +52,9 @@
         echo "Connection failed: " . $e->getMessage();
     }
 
-    // Fetch the top 100 songs from the database
     $stmt = $pdo->query("SELECT * FROM hot100");
     $songs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Create an HTML table to display the song data
     echo "<table class='table'>";
     echo "<tr>
     <th scope='col'>date</th><th scope='col'>rank</th><th scope='col'>song</th><th scope='col'>artist</th><th scope='col'>last_week</th><th scope='col'>peek_week</th><th scope='col'>weeks_on_board</th></tr>";

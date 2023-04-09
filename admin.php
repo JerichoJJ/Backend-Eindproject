@@ -1,3 +1,11 @@
+<?php
+session_start(); // Start the session
+
+if (!isset($_SESSION['loggedin'])) {
+    header('Location: login.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +29,8 @@
             <a href="index.php">index</a>
             <br>
             <a href="links.php">links</a>
+            <br>
+            <a href="admin.php">Admin</a>
         </div>
     </body>
 </div>

@@ -1,3 +1,15 @@
+<?php
+// Start the session
+session_start();
+
+// Check if the user is logged in
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+    // User is logged in, no need to update session
+} else {
+    // User is not logged in, update session
+    $_SESSION['loggedin'] = true;
+}
+?>
 <html lang="en">
 
 <head>
@@ -37,6 +49,11 @@
             $passwordEncrypted = $row['password'];
             $errors = [];
 
+            if ( !isset($_POST['username'], $_POST['password']) ) {
+
+                exit('Vul een gebruikersnaam en wachtwoord in.');
+            }
+
             if (password_verify($password, $passwordEncrypted)) {
                 echo "Gelukt, je wordt nu ingelogd.";
                 header("Location: index.php");
@@ -45,7 +62,7 @@
                 echo "<div class= 'popup2'>
                 <form method='POST' action='login.php'>
                 <h2>Wachtwoorden komen niet overeen.</h2>
-                    <input type='submit' value='Keer terug'>
+                <input type='submit' value='Keer terug'>
                 </form></div>";
             }
         } else {

@@ -21,6 +21,8 @@
             <a href="index.php">index</a>
             <br>
             <a href="links.php">links</a>
+            <br>
+            <a href="admin.php">Admin</a>
         </div>
     </body>
 </div>
