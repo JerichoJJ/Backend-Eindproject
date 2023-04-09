@@ -15,15 +15,14 @@
     <body>
         <div class="popup">
 
-            <form method="post">
-                <h2>Login</h2>
-                <input type="text" name="username2" placeholder="Username" required>
-                <input type="password" name="password2" placeholder="Password" required>
-                <input type="submit" value="Login">
-                <p>Heb je geen account? <a href="signup.php">Maak een account aan.</a></p>
+            <form method="POST" action="login-validate.php">
+            <h2>Login</h2>
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="submit" value="Log in">
             </form>
+
         </div>
-        <?php include("login-validate.php"); ?>
     </body>
 </div>
 

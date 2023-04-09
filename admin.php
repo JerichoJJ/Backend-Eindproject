@@ -12,9 +12,16 @@
 
 <div class="body">
 
-    <body>
-        <p>index Wordt aan gewerkt</p>
-        <a href="links.php">Hier vind je alle Pagina's</a>
+        <div class="linkjes">
+            <h1> Alle huidige pagina's: </h1>
+            <a href="login.php">login</a>
+            <br>
+            <a href="signup.php">signup</a>
+            <br>
+            <a href="index.php">index</a>
+            <br>
+            <a href="links.php">links</a>
+        </div>
     </body>
 </div>
 

@@ -1,14 +1,3 @@
-<?php
-session_start(); // Start the session
-
-// If the user is not logged in, redirect them to the login page
-if (!isset($_SESSION['loggedin'])) {
-    header('Location: login.php');
-    exit;
-}
-
-// The user is logged in, so display the restricted content
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,19 +27,22 @@ if (!isset($_SESSION['loggedin'])) {
     }
 
     // Fetch the top 100 songs from the database
-    $stmt = $pdo->query("SELECT * FROM top100");
+    $stmt = $pdo->query("SELECT * FROM hot100");
     $songs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     // Create an HTML table to display the song data
     echo "<table class='table'>";
-    echo "<tr>scope='col'>ID</th>scope='col'>Title</th>scope='col'>Artist</th>scope='col'>Featuring</th>scope='col'>Link</th></tr>";
+    echo "<tr>
+    <th scope='col'>date</th><th scope='col'>rank</th><th scope='col'>song</th><th scope='col'>artist</th><th scope='col'>last_week</th><th scope='col'>peek_week</th><th scope='col'>weeks_on_board</th></tr>";
     foreach ($songs as $song) {
         echo "<tr>";
-        echo "<th scope='row'>" . $song['id'] . "</td>";
-        echo "<td>" . $song['title'] . "</td>";
+        echo "<th scope='row'>" . $song['date'] . "</td>";
+        echo "<td>" . $song['rank'] . "</td>";
+        echo "<td>" . $song['song'] . "</td>";
         echo "<td>" . $song['artist'] . "</td>";
-        echo "<td>" . $song['featuring'] . "</td>";
-        echo "<td>" . $song['link'] . "</td>";
+        echo "<td>" . $song['last_week'] . "</td>";
+        echo "<td>" . $song['peek_week'] . "</td>";
+        echo "<td>" . $song['weeks_on_board'] . "</td>";
         echo "</tr>";
     }
     echo "</table>";

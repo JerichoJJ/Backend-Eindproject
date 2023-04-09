@@ -12,7 +12,7 @@
 
 <body>
     <div class="popup">
-        <form method="POST">
+        <form method="POST" action="signup-validate.php">
             <h2>Sign up</h2>
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>

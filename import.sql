@@ -1,4 +1,5 @@
 /* User database*/
+DROP DATABASE gebruiker_data;
 CREATE DATABASE gebruiker_data;
 
 USE gebruiker_data;
@@ -14,7 +15,7 @@ CREATE TABLE  (
 /*
 Gebruiker admin rechtern geven:
 
-USE billboardtop100;
+USE gebruiker_data;
 
 UPDATE users SET is_admin = 1 WHERE username = 'john';
 */
@@ -22,7 +23,7 @@ UPDATE users SET is_admin = 1 WHERE username = 'john';
 /*
 Gebruiker handmatig toevoegen:
 
-USE billboardtop100;
+USE gebruiker_data;
 
 INSERT INTO users (username, password, is_admin) VALUES ('admin', 'password123', 1);
 */
