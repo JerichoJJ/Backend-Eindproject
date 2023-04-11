@@ -11,5 +11,3 @@ Dit project vereist een webserver met PHP 7 of hoger en MySQL 5.6 of hoger. Ook 
 ## Auteurs
 Dit project is gemaakt door Jericho Clare student aan de Bit-academie(locatie amsterdam).
 
-## Extra
-ik heb mijn mentor aangegeven dat mijn Xampp niet werkt en ik daardoor sinds 05-04-2023 niet meer kan kijken hoe mijn database eruitziet op mijn php pagina's houd bij het nakijken aub rekening met dat ik hierdoor een groot gedeelte van mijn code blind moet schrijven. Ps. ik ben nog van plan te werken aan dit project als mijn xampp weer werkt en ik wil sowieso nog fouten nalopen zolang het kan voor de deadline. het inleveren doe ik voor wanneer ik mijn project optijd vergeet in te leveren.
