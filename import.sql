@@ -1,10 +1,10 @@
 /* User database*/
-DROP DATABASE gebruiker_data;
+DROP DATABASE IF EXISTS gebruiker_data;
 CREATE DATABASE gebruiker_data;
 
 USE gebruiker_data;
 
-CREATE TABLE  (
+CREATE TABLE users (
   id INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
@@ -25,5 +25,5 @@ Gebruiker handmatig toevoegen:
 
 USE gebruiker_data;
 
-INSERT INTO users (username, password, is_admin) VALUES ('admin', 'password123', 1);
+INSERT INTO users (username, password, is_admin) VALUES ('admin', 'admin', 1);
 */

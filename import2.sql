@@ -1,5 +1,5 @@
 /* bilboard database */
-DROP DATABASE billboard_songs;
+DROP DATABASE IF EXISTS billboard_songs;
 CREATE DATABASE billboard_songs;
 
 USE billboard_songs;

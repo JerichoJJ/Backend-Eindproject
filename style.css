@@ -1,7 +1,4 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-family: Arial, sans-serif;
 }
 
@@ -48,6 +45,12 @@ input[type="submit"]:hover {
 
 
 .popup2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body{
     display: flex;
     justify-content: center;
     align-items: center;

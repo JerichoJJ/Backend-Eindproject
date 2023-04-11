@@ -1,5 +1,4 @@
 <?php
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
@@ -23,37 +22,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (count($errors) == 0) {
         $servername = "localhost";
         $dbname = "gebruiker_data";
-        $username = "root";
-        $password = "";
-
-        $dsn = "mysql:host=$servername;dbname=$dbname";
-        $pdo = new PDO($dsn, $username, $password);
-
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $stmt = $pdo->prepare("SELECT username FROM users WHERE username = :username");
-        $stmt->bindParam(":username", $username);
-        $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
-            echo "Gebruikersnaam bestaat al." . PHP_EOL;
-            exit();
-        }
-
-        $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
-        $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":password", $password_hash);
-
-        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+        $dbusername = "root";
+        $dbpassword = "";
 
         try {
+            $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $stmt = $pdo->prepare("SELECT username FROM users WHERE username = :username");
+            $stmt->bindParam(":username", $username);
             $stmt->execute();
-            echo "New user created successfully";
-        } catch (PDOException $e) {
+
+            if ($stmt->rowCount() > 0) {
+                $errors[] = "Username already exists.";
+            } else {
+                $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (:username, :password_hash)");
+                $stmt->bindParam(":username", $username);
+                $stmt->bindParam(":password_hash", $password_hash);
+
+                $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+                $stmt->execute();
+                header("Location: login.php");
+                exit();
+            }
+        } catch(PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
 
         $stmt = null;
         $pdo = null;
+    } else {
+        foreach ($errors as $error) {
+            echo $error . "<br>";
+        }
+        exit();
     }
 }
