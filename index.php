@@ -53,9 +53,9 @@ if (!isset($_SESSION['loggedin'])) {
     $stmt = $pdo->query("SELECT * FROM hot100");
     $songs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    echo "<table class='table'>";
+    echo "<table class='table table-striped table-hover'>";
     echo "<tr>
-    <th scope='col'>date</th><th scope='col'>rank</th><th scope='col'>song</th><th scope='col'>artist</th><th scope='col'>last_week</th><th scope='col'>peak_rank</th><th scope='col'>weeks_on_board</th></tr>";
+    <th scope='col'>Datum data</th><th scope='col'>Bilboard nummer</th><th scope='col'>Titel</th><th scope='col'>Artiest(en)</th><th scope='col'>Positie vorige week</th><th scope='col'>Hoogste positie</th><th scope='col'>Weken in de Hot100</th></tr>";
     foreach ($songs as $song) {
         echo "<tr>";
         echo "<th scope='row'>" . $song['date'] . "</td>";
@@ -70,7 +70,6 @@ if (!isset($_SESSION['loggedin'])) {
     echo "</table>";
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <a href="links.php">Alle links</a>
 </body>
 
 </html>
