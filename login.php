@@ -13,10 +13,11 @@
 <div class="body">
 
     <body>
+
         <div class="popup">
 
             <form method="POST" action="login-validate.php">
-            <h2>Login</h2>
+                <h2>Login</h2>
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <input type="submit" value="Log in">

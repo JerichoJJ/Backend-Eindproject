@@ -16,7 +16,6 @@ CREATE TABLE users (
 Gebruiker admin rechtern geven:
 
 USE gebruiker_data;
-
 UPDATE users SET is_admin = 1 WHERE username = 'john';
 */
 
@@ -24,6 +23,5 @@ UPDATE users SET is_admin = 1 WHERE username = 'john';
 Gebruiker handmatig toevoegen:
 
 USE gebruiker_data;
-
 INSERT INTO users (username, password, is_admin) VALUES ('admin', 'admin', 1);
 */

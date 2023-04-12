@@ -15,8 +15,8 @@ weeks_on_board INT
 );
 
 /*
-
 insert voorbeeld:
+
 INSERT INTO hot100 (title, artist, featuring, likes)
 VALUES ('Shape of You', 'Ed Sheeran', NULL, 'https://www.example.com/likecount');
 */

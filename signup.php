@@ -21,7 +21,9 @@
             <p>Already have an account? <a href="login.php">Log in.</a></p>
         </form>
     </div>
+
     <?php include("signup-validate.php"); ?>
+
 </body>
 
 </html>

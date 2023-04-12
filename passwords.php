@@ -2,9 +2,9 @@
 
 $input_string = readline("Welk wachtwoord wil je encrypten: ");
 
-// Hash the input string using the default algorithm (currently bcrypt)
+// Hash de input_string (bcrypt)
 $hashed_password = password_hash($input_string, PASSWORD_DEFAULT);
 
-// Print out the hashed password
+// Print de nieuwe Hashed_password
 echo "Hashed password: " . $hashed_password;
 ?>

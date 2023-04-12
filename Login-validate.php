@@ -1,12 +1,10 @@
 <?php
-// Start the session
+
 session_start();
 
-// Check if the user is logged in
+
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    // User is logged in, no need to update session
 } else {
-    // User is not logged in, update session
     $_SESSION['loggedin'] = true;
 }
 ?>

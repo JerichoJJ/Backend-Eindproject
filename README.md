@@ -10,4 +10,3 @@ Dit project vereist een webserver met PHP 7 of hoger en MySQL 5.6 of hoger. Ook 
 
 ## Auteurs
 Dit project is gemaakt door Jericho Clare student aan de Bit-academie(locatie amsterdam).
-
