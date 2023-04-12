@@ -7,80 +7,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<title>ReadMe</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Bilboard top 100 | ReadMe</title>
 </head>
 
 <body>
+
     <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Hot100</a>
+            <a class="nav-link active" aria-current="page" href="index.php" style="color: #198754;">Hot100</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Info</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="README.html">ReadMe</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="https://github.com/JerichoJJ">Github</a></li>
-          </ul>
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"
+                style="color: #198754;">Info</a>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="README.html">ReadMe</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="https://github.com/JerichoJJ">Github</a></li>
+            </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="logout.php">Log out</a>
+            <a class="nav-link" href="logout.php" style="color: #198754;">Log out</a>
         </li>
-      </ul>
-    <div class="koptekst">
-        <h1> Backend-Eindproject </h1>
-    </div>
+    </ul>
 
-    <div class="projectbeschrijving">
-        <div class="kopje">
-            <h2> Projectbeschrijving </h2>
+    <div class="kopje">
+
+        <div class="projectbeschrijving">
+            <div class="kopje">
+                <h2 class="text-center"> Projectbeschrijving </h2>
+            </div>
+
+            <p class="text-center"> project is een eenvoudig voorbeeld van een registratiepagina in PHP met beveiliging
+                tegen zwakke
+                wachtwoorden en
+                SQL-injectie. Gebruikers kunnen zich registreren door hun gebruikersnaam, wachtwoord en bevestiging van
+                het
+                wachtwoord in te voeren. De pagina controleert vervolgens of het wachtwoord voldoet aan de minimale
+                eisen
+                van
+                lengte, bevat ten minste één cijfer en één hoofdletter, en of beide wachtwoorden overeenkomen. Als aan
+                deze
+                eisen is
+                voldaan, wordt het wachtwoord gehasht en opgeslagen in een MySQL-database. Als er al een gebruiker
+                bestaat
+                met
+                dezelfde gebruikersnaam, krijgt de gebruiker een foutmelding te zien en wordt de registratie
+                geannuleerd.
+            </p>
         </div>
 
-        <p> project is een eenvoudig voorbeeld van een registratiepagina in PHP met beveiliging tegen zwakke
-            wachtwoorden en
-            SQL-injectie. Gebruikers kunnen zich registreren door hun gebruikersnaam, wachtwoord en bevestiging van het
-            wachtwoord in te voeren. De pagina controleert vervolgens of het wachtwoord voldoet aan de minimale eisen
-            van
-            lengte, bevat ten minste één cijfer en één hoofdletter, en of beide wachtwoorden overeenkomen. Als aan deze
-            eisen is
-            voldaan, wordt het wachtwoord gehasht en opgeslagen in een MySQL-database. Als er al een gebruiker bestaat
-            met
-            dezelfde gebruikersnaam, krijgt de gebruiker een foutmelding te zien en wordt de registratie geannuleerd.
-        </p>
-    </div>
-
-    <div class="gebruik">
-        <div class="kopje">
-            <h2>Gebruik</h2>
+        <div class="gebruik">
+            <div class="kopje">
+                <h2 class="text-center">Gebruik</h2>
+            </div>
+            <p class="text-center"> Om dit project te gebruiken, moet u de bestanden op een webserver plaatsen die PHP
+                en MySQL ondersteunt.
+                Maak
+                vervolgens een database aan en voer het users.sql script uit om de benodigde tabel aan te maken. Pas ten
+                slotte de
+                config.php aan met de juiste databasegegevens en bezoek de registratiepagina in uw webbrowser om het
+                project
+                te
+                gebruiken.
+            </p>
         </div>
-        <p> Om dit project te gebruiken, moet u de bestanden op een webserver plaatsen die PHP en MySQL ondersteunt.
-            Maak
-            vervolgens een database aan en voer het users.sql script uit om de benodigde tabel aan te maken. Pas ten
-            slotte de
-            config.php aan met de juiste databasegegevens en bezoek de registratiepagina in uw webbrowser om het project
-            te
-            gebruiken.
-        </p>
-    </div>
 
-    <div class="vereisten">
-        <div class="kopje">
-            <h2> Vereisten </h2>
+        <div class="vereisten">
+            <div class="kopje">
+                <h2 class="text-center"> Vereisten </h2>
+            </div>
+            <p class="text-center"> Dit project vereist een webserver met PHP 7 of hoger en MySQL 5.6 of hoger. Ook moet
+                de webserver
+                toegang
+                hebben
+                tot
+                de PDO extensie en de bcrypt hashing functie.
+            </p>
         </div>
-        <p> Dit project vereist een webserver met PHP 7 of hoger en MySQL 5.6 of hoger. Ook moet de webserver toegang
-            hebben
-            tot
-            de PDO extensie en de bcrypt hashing functie.
-        </p>
+        <div class="auteurs">
+            <div class="kopje">
+                <h2 class="text-center"> Auteurs </h2>
+            </div>
+            <p class="text-center">Dit project is gemaakt door <a href="https://github.com/JerichoJJ"
+                    style="color: #198754;"><strong>Jericho Clare</strong></a>
+                student aan de
+                <a href="https://www.bit-academy.nl/?gclid=CjwKCAjwitShBhA6EiwAq3RqA0Ns7qclq_8scpTuavLdFoBRaN9uG_TR4CnTm53JUknK2WdPqjz_NhoCGjcQAvD_BwE"
+                    style="color: #198754;"><strong>Bit-academy</strong></a>(locatie
+                amsterdam).
+            </p>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     </div>
-
-    <h2> Auteurs </h2>
-    <p>Dit project is gemaakt door <a href="https://github.com/JerichoJJ" class="link-success">Jericho Clare</a> student aan de
-        <a href="https://www.bit-academy.nl/?gclid=CjwKCAjwitShBhA6EiwAq3RqA0Ns7qclq_8scpTuavLdFoBRaN9uG_TR4CnTm53JUknK2WdPqjz_NhoCGjcQAvD_BwE" class="link-success">Bit-academy</a>(locatie
-        amsterdam).
-    </p>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -2,8 +2,8 @@
 session_start();
 
 if (!isset($_SESSION['loggedin'])) {
-    header('Location: login.php');
-    exit;
+  header('Location: login.php');
+  exit;
 }
 
 ?>
@@ -11,65 +11,67 @@ if (!isset($_SESSION['loggedin'])) {
 <html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilboard top 100</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilboard top 100</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 
 <body>
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="index.php">Hot100</a>
-  </li>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Info</a>
-    <ul class="dropdown-menu">
-      <li><a class="dropdown-item" href="README.html">ReadMe</a></li>
-      <li><hr class="dropdown-divider"></li>
-      <li><a class="dropdown-item" href="https://github.com/JerichoJJ">Github</a></li>
-    </ul>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="logout.php">Log out</a>
-  </li>
-</ul>
-<?php
-    $host = "localhost";
-    $dbname = "billboard_songs";
-    $username = "root";
-    $password = "";
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="index.php" style="color: #198754;">Hot100</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" style="color: #198754;">Info</a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="README.html">ReadMe</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
+        <li><a class="dropdown-item" href="https://github.com/JerichoJJ">Github</a></li>
+      </ul>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="logout.php" style="color: #198754;">Log out</a>
+    </li>
+  </ul>
+  <?php
+  $host = "localhost";
+  $dbname = "billboard_songs";
+  $username = "root";
+  $password = "";
 
-    try {
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo "Connection failed: " . $e->getMessage();
-    }
+  try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch (PDOException $e) {
+    echo "Connection failed: " . $e->getMessage();
+  }
 
-    $stmt = $pdo->query("SELECT * FROM hot100");
-    $songs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt = $pdo->query("SELECT * FROM hot100");
+  $songs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    echo "<table class='table table-striped table-hover'>";
-    echo "<tr>
+  echo "<table class='table table-success table-striped table-hover'>";
+  echo "<tr>
     <th scope='col'>Datum data</th><th scope='col'>Bilboard nummer</th><th scope='col'>Titel</th><th scope='col'>Artiest(en)</th><th scope='col'>Positie vorige week</th><th scope='col'>Hoogste positie</th><th scope='col'>Weken in de Hot100</th></tr>";
-    foreach ($songs as $song) {
-        echo "<tr>";
-        echo "<th scope='row'>" . $song['date'] . "</td>";
-        echo "<td>" . $song['rank'] . "</td>";
-        echo "<td>" . $song['song'] . "</td>";
-        echo "<td>" . $song['artist'] . "</td>";
-        echo "<td>" . $song['last_week'] . "</td>";
-        echo "<td>" . $song['peak_rank'] . "</td>";
-        echo "<td>" . $song['weeks_on_board'] . "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
-    ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  foreach ($songs as $song) {
+    echo "<tr>";
+    echo "<th scope='row'>" . $song['date'] . "</td>";
+    echo "<td>" . $song['rank'] . "</td>";
+    echo "<td>" . $song['song'] . "</td>";
+    echo "<td>" . $song['artist'] . "</td>";
+    echo "<td>" . $song['last_week'] . "</td>";
+    echo "<td>" . $song['peak_rank'] . "</td>";
+    echo "<td>" . $song['weeks_on_board'] . "</td>";
+    echo "</tr>";
+  }
+  echo "</table>";
+  ?>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
