@@ -73,7 +73,7 @@
         </form>
     </div>
 
-    <div class="d-grid gap-2 col-6 mx-auto">
+    <div class="d-grid gap-2 col-7 mx-auto">
         <h2>Edit/Delete Users</h2>
         <?php
         // Connect to the database
