@@ -36,12 +36,15 @@ if (!isset($_SESSION['loggedin'])) {
       </ul>
     </li>
     <li class="nav-item">
+      <a class="nav-link" href="admin.php" style="color: #198754;">Admin pagina</a>
+    </li>
+    <li class="nav-item">
       <a class="nav-link" href="logout.php" style="color: #198754;">Log out</a>
     </li>
   </ul>
   <?php
   $host = "localhost";
-  $dbname = "billboard_songs";
+  $dbname = "billboard100";
   $username = "root";
   $password = "";
 
@@ -57,10 +60,13 @@ if (!isset($_SESSION['loggedin'])) {
 
   echo "<table class='table table-success table-striped table-hover'>";
   echo "<tr>
-    <th scope='col'>Datum data</th><th scope='col'>Bilboard nummer</th><th scope='col'>Titel</th><th scope='col'>Artiest(en)</th><th scope='col'>Positie vorige week</th><th scope='col'>Hoogste positie</th><th scope='col'>Weken in de Hot100</th></tr>";
+    <th scope='col'>Aantal likes</th><th scope='col'>Bilboard nummer</th><th scope='col'>Titel</th><th scope='col'>Artiest(en)</th><th scope='col'>Positie vorige week</th><th scope='col'>Hoogste positie</th><th scope='col'>Weken in de Hot100</th></tr>";
   foreach ($songs as $song) {
     echo "<tr>";
-    echo "<th scope='row'>" . $song['date'] . "</td>";
+    echo "<th scope='row'><span id='likes_{$song['id']}'>{$song['likes']}</span><div class='btn-toolbar' role='toolbar' aria-label='Toolbar with button groups'>" . "<div class='btn-group me-2' role='group' aria-label='First group'>";
+    echo "<button type='button' class='btn btn-success'><a href='like_song.php?id=" . $song['id'] . "&action=like'>👍</a></button>";
+    echo "<button type='button' class='btn btn-danger'><a href='like_song.php?id=" . $song['id'] . "&action=dislike'>👎</a></button>";
+    echo "</div>" . "</div></th>";
     echo "<td>" . $song['rank'] . "</td>";
     echo "<td>" . $song['song'] . "</td>";
     echo "<td>" . $song['artist'] . "</td>";

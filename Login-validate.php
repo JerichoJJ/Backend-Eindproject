@@ -1,13 +1,23 @@
 <?php
-
 session_start();
 
+// Assuming the user's credentials are validated and stored in $user variable
 
-if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-} else {
-    $_SESSION['loggedin'] = true;
+// Set the session variables
+$_SESSION['loggedin'] = true;
+$_SESSION['user_id'] = $user['id'];
+$_SESSION['username'] = $user['username'];
+// Set the user role if applicable
+if ($user['is_admin']) {
+    $_SESSION['is_admin'] = true;
 }
+
+// Set the login status cookie
+setcookie('login_status', 'loggedin', time() + (86400 * 30), '/'); // Expires in 30 days
+
+// Redirect the user to the desired page
 ?>
+
 <html lang="en">
 
 <head>
@@ -28,7 +38,7 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         $password = $_POST['password'];
 
         $servername = "localhost";
-        $dbname = "gebruiker_data";
+        $dbname = "billboard100";
         $username_db = "root";
         $password_db = "";
 
@@ -46,6 +56,11 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             $passwordEncrypted = $row['password'];
             $errors = [];
+            if ($row['is_admin'] == 1) {
+                $_SESSION['is_admin'] = true;
+            } else {
+                $_SESSION['is_admin'] = false;
+            }
 
             if ( !isset($_POST['username'], $_POST['password']) ) {
 

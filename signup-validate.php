@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (count($errors) == 0) {
         $servername = "localhost";
-        $dbname = "gebruiker_data";
+        $dbname = "billboard100";
         $dbusername = "root";
         $dbpassword = "";
 
@@ -39,9 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES (:username, :password_hash)");
                 $stmt->bindParam(":username", $username);
                 $stmt->bindParam(":password_hash", $password_hash);
-
                 $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
                 $stmt->execute();
                 header("Location: login.php");
                 exit();
