@@ -63,7 +63,9 @@ if (!isset($_SESSION['loggedin'])) {
     <th scope='col'>Aantal likes</th><th scope='col'>Bilboard nummer</th><th scope='col'>Titel</th><th scope='col'>Artiest(en)</th><th scope='col'>Positie vorige week</th><th scope='col'>Hoogste positie</th><th scope='col'>Weken in de Hot100</th></tr>";
   foreach ($songs as $song) {
     echo "<tr>";
-    echo "<th scope='row'><span id='likes_{$song['id']}'>{$song['likes']}</span><div class='btn-toolbar' role='toolbar' aria-label='Toolbar with button groups'>" . "<div class='btn-group me-2' role='group' aria-label='First group'>";
+    echo "<th scope='row'>
+    <span id='likes_{$song['id']}'>{$song['likes']}</span>
+    <div class='btn-toolbar' role='toolbar' aria-label='Toolbar with button groups'>" . "<div class='btn-group me-2' role='group' aria-label='First group'>";
     echo "<button type='button' class='btn btn-success'><a href='like_song.php?id=" . $song['id'] . "&action=like'>👍</a></button>";
     echo "<button type='button' class='btn btn-danger'><a href='like_song.php?id=" . $song['id'] . "&action=dislike'>👎</a></button>";
     echo "</div>" . "</div></th>";

@@ -1,12 +1,13 @@
 DROP DATABASE IF EXISTS billboard_songs;
 DROP DATABASE IF EXISTS billboard100;
 DROP DATABASE IF EXISTS user_data;
-DROP TABLE IF EXISTS user_likes;
+
 
 CREATE DATABASE billboard100;
 
 USE billboard100;
 
+DROP  TABLE IF EXISTS hot100;
 CREATE TABLE hot100 (
 likes INT,
 rank INT,
@@ -19,6 +20,7 @@ id INT NOT NULL AUTO_INCREMENT,
 PRIMARY key (id)
 );
 
+DROP  TABLE IF EXISTS users;
 CREATE TABLE users (
 id INT NOT NULL AUTO_INCREMENT,
 username VARCHAR(255) NOT NULL,
@@ -27,13 +29,18 @@ is_admin BOOLEAN NOT NULL DEFAULT 0,
 PRIMARY KEY (id)
 );
 
+DROP TABLE IF EXISTS user_likes;
 CREATE TABLE user_likes (
 id INT NOT NULL AUTO_INCREMENT,
 user_id INT NOT NULL,
 song_id INT NOT NULL,
+created_at  DATE NOT NULL,
 PRIMARY KEY (id)
 );
+ALTER TABLE user_likes ADD CONSTRAINT unique_user_song UNIQUE (user_id, song_id);
 
+/*
+Dummy data
 INSERT INTO hot100 (likes, rank, song, artist, last_week, peak_rank, weeks_on_board)
 
 VALUES

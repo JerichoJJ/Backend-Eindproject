@@ -31,17 +31,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && isset($_GET['a
 
     if ($action === 'like') {
       // Insert a new row into the user_likes table
-      $stmt = $pdo->prepare("INSERT INTO user_likes (song_id, user_id) VALUES (:song_id, :user_id)");
-      $stmt->bindParam(':song_id', $songId);
+      $stmt = $pdo->prepare("INSERT INTO user_likes (user_id, song_id, created_at) VALUES (:user_id, :song_id, NOW())");
       $stmt->bindParam(':user_id', $userId);
+      $stmt->bindParam(':song_id', $songId);
       $stmt->execute();
     } elseif ($action === 'dislike') {
-      // Delete the corresponding row from the user_likes table
-      $stmt = $pdo->prepare("DELETE FROM user_likes WHERE song_id = :song_id AND user_id = :user_id");
-      $stmt->bindParam(':song_id', $songId);
+      // Check if the user has already liked or disliked the song
+      $stmt = $pdo->prepare("SELECT * FROM user_likes WHERE user_id = :user_id AND song_id = :song_id");
       $stmt->bindParam(':user_id', $userId);
+      $stmt->bindParam(':song_id', $songId);
       $stmt->execute();
+
+      if ($stmt->rowCount() > 0) {
+        // User has already liked or disliked the song, so delete the corresponding row from the user_likes table
+        $stmt = $pdo->prepare("DELETE FROM user_likes WHERE user_id = :user_id AND song_id = :song_id");
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':song_id', $songId);
+        $stmt->execute();
+      }
     }
+
+    // Get the updated number of likes for the song
+    $stmt = $pdo->prepare("SELECT COUNT(*) as likes_count FROM user_likes WHERE song_id = :song_id");
+    $stmt->bindParam(':song_id', $songId);
+    $stmt->execute();
+    $likesCount = $stmt->fetch(PDO::FETCH_ASSOC)['likes_count'];
+
+    // Echo the likes count for the song
+    echo "<script>document.getElementById('likes_$songId').textContent = '$likesCount';</script>";
 
     // Redirect back to the index.php page
     header('Location: index.php');

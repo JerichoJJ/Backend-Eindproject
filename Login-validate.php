@@ -1,23 +1,3 @@
-<?php
-session_start();
-
-// Assuming the user's credentials are validated and stored in $user variable
-
-// Set the session variables
-$_SESSION['loggedin'] = true;
-$_SESSION['user_id'] = $user['id'];
-$_SESSION['username'] = $user['username'];
-// Set the user role if applicable
-if ($user['is_admin']) {
-    $_SESSION['is_admin'] = true;
-}
-
-// Set the login status cookie
-setcookie('login_status', 'loggedin', time() + (86400 * 30), '/'); // Expires in 30 days
-
-// Redirect the user to the desired page
-?>
-
 <html lang="en">
 
 <head>
@@ -33,6 +13,7 @@ setcookie('login_status', 'loggedin', time() + (86400 * 30), '/'); // Expires in
 
     <body>
         <?php
+        session_start();
 
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -56,36 +37,55 @@ setcookie('login_status', 'loggedin', time() + (86400 * 30), '/'); // Expires in
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
             $passwordEncrypted = $row['password'];
             $errors = [];
+
             if ($row['is_admin'] == 1) {
                 $_SESSION['is_admin'] = true;
             } else {
                 $_SESSION['is_admin'] = false;
             }
 
-            if ( !isset($_POST['username'], $_POST['password']) ) {
-
+            if (!isset($_POST['username'], $_POST['password'])) {
                 exit('Vul een gebruikersnaam en wachtwoord in.');
             }
 
             if (password_verify($password, $passwordEncrypted)) {
                 echo "Gelukt, je wordt nu ingelogd.";
+
+                // Assign the user data to the $user variable
+                $user = $row;
+
+                // Set the session variables
+                $_SESSION['loggedin'] = true;
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+
+                // Set the user role if applicable
+                if ($user['is_admin']) {
+                    $_SESSION['is_admin'] = true;
+                }
+
+                // Set the login status cookie
+                setcookie('login_status', 'loggedin', time() + (86400 * 30), '/'); // Expires in 30 days
+
+                // Redirect the user to the desired page
                 header("Location: index.php");
                 exit();
             } else {
-                echo "<div class= 'popup2'>
-                <form method='POST' action='login.php'>
-                <h2>Wachtwoorden komen niet overeen.</h2>
-                <input type='submit' value='Keer terug'>
-                </form></div>";
+                echo "<div class='popup2'>
+            <form method='POST' action='login.php'>
+            <h2>Wachtwoorden komen niet overeen.</h2>
+            <input type='submit' value='Keer terug'>
+            </form>
+        </div>";
             }
         } else {
-            echo "<div class= 'popup2'>
-            <form method='POST' action='login.php'>
-    <h2>Gebruiker niet gevonden.</h2>
-        <input type='submit' value='Keer terug'>
-    </form></div>";
+            echo "<div class='popup2'>
+        <form method='POST' action='login.php'>
+            <h2>Gebruiker niet gevonden.</h2>
+            <input type='submit' value='Keer terug'>
+        </form>
+    </div>";
         }
-
 
         $stmt = null;
         $pdo = null;
