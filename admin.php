@@ -55,22 +55,10 @@
         die("Connection failed: " . $e->getMessage());
     }
 
-
-    if (isset($_POST['reset_likes'])) {
-        $stmt = $pdo->prepare("TRUNCATE TABLE user_likes");
-        $stmt->execute();
-        echo '<p class="text-center">Likes reset successful!</p>';
-    }
     ?>
 
     <div class="koptekst">
         <h1 class="text-center">Admin pagina</h1>
-    </div>
-
-    <div class="d-grid gap-2 col-6 mx-auto">
-        <form method="post">
-            <button class="btn btn-success" type="submit" name="reset_likes">Reset All Likes</button>
-        </form>
     </div>
 
     <div class="d-grid gap-2 col-7 mx-auto">

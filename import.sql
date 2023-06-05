@@ -29,13 +29,13 @@ is_admin BOOLEAN NOT NULL DEFAULT 0,
 PRIMARY KEY (id)
 );
 
-DROP TABLE IF EXISTS user_likes;
 CREATE TABLE user_likes (
-id INT NOT NULL AUTO_INCREMENT,
-user_id INT NOT NULL,
-song_id INT NOT NULL,
-created_at  DATE NOT NULL,
-PRIMARY KEY (id)
+  id INT NOT NULL AUTO_INCREMENT,
+  user_id INT NOT NULL,
+  song_id INT NOT NULL,
+  created_at DATE NOT NULL,
+  type VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
 );
 ALTER TABLE user_likes ADD CONSTRAINT unique_user_song UNIQUE (user_id, song_id);
 

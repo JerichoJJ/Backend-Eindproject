@@ -37,6 +37,11 @@
         </li>
     </ul>
     <div class="d-grid gap-2 col-3 mx-auto">
+        <div class="d-grid gap-2 col-7 mx-auto">
+            <form method="post">
+                <button class="btn btn-success" type="submit" name="reset_likes">Reset All Likes</button>
+            </form>
+        </div>
         <?php
         session_start();
 
@@ -58,14 +63,23 @@
             $stmt = $pdo->query("SELECT * FROM user_likes");
             $userLikes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+            if (isset($_POST['reset_likes'])) {
+                $here = "likepage.php";
+                $stmt = $pdo->prepare("TRUNCATE TABLE user_likes");
+                $stmt->execute();
+                echo '<p class="text-center">Likes reset successful!</p>';
+                header($here);
+                exit();
+            }
             // Check if there are any user likes
             if (count($userLikes) > 0) {
                 echo "<table>";
-                echo "<tr><th>User ID</th><th>Song ID</th><th>Created At</th></tr>";
+                echo "<tr><th>User ID</th><th>Song ID</th><th>Type</th><th>Created At</th></tr>";
                 foreach ($userLikes as $userLike) {
                     echo "<tr>";
                     echo "<td>" . $userLike['user_id'] . "</td>";
                     echo "<td>" . $userLike['song_id'] . "</td>";
+                    echo "<td>" . $userLike['type'] . "</td>";
                     echo "<td>" . $userLike['created_at'] . "</td>";
                     echo "</tr>";
                 }
