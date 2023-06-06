@@ -60,23 +60,30 @@ if (!isset($_SESSION['loggedin'])) {
 
   echo "<table class='table table-success table-striped table-hover'>";
   echo "<tr>
-    <th scope='col'>Bilboard nummer</th><th scope='col'>Titel</th><th scope='col'>Artiest(en)</th><th scope='col'>Like</th><th scope='col'>Dislike</th><th scope='col'>Aantal likes</th><th scope='col'>Positie vorige week</th><th scope='col'>Hoogste positie</th><th scope='col'>Aantal weken in de lijst</th>
+    <th scope='col'>Bilboard nummer</th><th scope='col'>Titel</th><th scope='col'>Artiest(en)</th><th scope='col'>Likes</th><th scope='col'>Dislikes</th><th scope='col'>Aantal likes</th><th scope='col'>Aantal dislikes</th><th scope='col'>Positie vorige week</th><th scope='col'>Hoogste positie</th><th scope='col'>Aantal weken in de lijst</th>
   </tr>";
   foreach ($songs as $song) {
     $songId = $song['id'];
 
     // Retrieve the number of likes for the current song
-    $stmt = $pdo->prepare("SELECT COUNT(*) as likes_count FROM user_likes WHERE song_id = :song_id");
+    $stmt = $pdo->prepare("SELECT COUNT(*) as likes_count FROM user_likes WHERE song_id = :song_id AND type = 'like'");
     $stmt->bindParam(':song_id', $songId);
     $stmt->execute();
     $likesCount = $stmt->fetch(PDO::FETCH_ASSOC)['likes_count'];
+
+    // Retrieve the number of dislikes for the current song
+    $stmt = $pdo->prepare("SELECT COUNT(*) as dislikes_count FROM user_likes WHERE song_id = :song_id AND type = 'dislike'");
+    $stmt->bindParam(':song_id', $songId);
+    $stmt->execute();
+    $dislikesCount = $stmt->fetch(PDO::FETCH_ASSOC)['dislikes_count'];
 
     echo "<tr>
       <td>{$song['rank']}</td>
       <td>{$song['song']}</td>
       <td>{$song['artist']}</td>
       <td><span id='likes_$songId'>$likesCount</span></td>
-      <td><a href='like_song.php?id=$songId&action=like'>👍 </a></td>
+      <td><span id='dislikes_$songId'>$dislikesCount</span></td>
+      <td><a href='like_song.php?id=$songId&action=like'>👍</a></td>
       <td><a href='like_song.php?id=$songId&action=dislike'>👎</a></td>
       <td>{$song['last_week']}</td>
       <td>{$song['peak_rank']}</td>
@@ -85,7 +92,7 @@ if (!isset($_SESSION['loggedin'])) {
   }
   echo "</table>";
   ?>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <ul class="nav nav-tabs">
+<ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link" aria-current="page" href="index.php" style="color: #198754;">Hot100</a>
         </li>
@@ -27,10 +27,10 @@
             </ul>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="admin.php" style="color: #198754;">Admin pagina</a>
+            <a class="nav-link " href="admin.php" style="color: #198754;">Admin pagina</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="likepage.php" style="color: #198754;">Likes</a>
+            <a class="nav-link active" href="likepage.php" style="color: #198754;">Likes</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="logout.php" style="color: #198754;">Log out</a>
@@ -93,6 +93,7 @@
         ?>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
