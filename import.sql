@@ -146,54 +146,21 @@ VALUES
 (0, 100, 'Nevada', 'YoungBoy Never Broke Again', NULL, 58, 4);
 
 
-INSERT INTO users (username, password, is_admin) VALUES
-  ('a', '$2y$10$cOz0BNV.Al19oPEsTszAxOSF1hfb6Ib36kwlNu6gu4g6Pqc9uogGS', 1),
-  ('b', '$2y$10$fd9uk8qU9A1034HJCuFspOXabs0xre5OHDJvgCxTqt8wph5t5TWo.', 1),
-  ('user3', 'password3', 0),
-  ('user4', 'password4', 0),
-  ('user5', 'password5', 0),
-  ('user6', 'password6', 0),
-  ('user7', 'password7', 0),
-  ('user8', 'password8', 0),
-  ('user9', 'password9', 0),
-  ('user10', 'password10', 0),
-  ('user11', 'password11', 0),
-  ('user12', 'password12', 0),
-  ('user13', 'password13', 0),
-  ('user14', 'password14', 0),
-  ('user15', 'password15', 0),
-  ('user16', 'password16', 0),
-  ('user17', 'password17', 0),
-  ('user18', 'password18', 0),
-  ('user19', 'password19', 0),
-  ('user20', 'password20', 0),
-  ('user21', 'password21', 0),
-  ('user22', 'password22', 0),
-  ('user23', 'password23', 0),
-  ('user24', 'password24', 0),
-  ('user25', 'password25', 0),
-  ('user26', 'password26', 0),
-  ('user27', 'password27', 0),
-  ('user28', 'password28', 0),
-  ('user29', 'password29', 0),
-  ('user30', 'password30', 0),
-  ('user31', 'password31', 0),
-  ('user32', 'password32', 0),
-  ('user33', 'password33', 0),
-  ('user34', 'password34', 0),
-  ('user35', 'password35', 0),
-  ('user36', 'password36', 0),
-  ('user37', 'password37', 0),
-  ('user38', 'password38', 0),
-  ('user39', 'password39', 0),
-  ('user40', 'password40', 0),
-  ('user41', 'password41', 0),
-  ('user42', 'password42', 0),
-  ('user43', 'password43', 0),
-  ('user44', 'password44', 0),
-  ('user45', 'password45', 0),
-  ('user46', 'password46', 0),
-  ('user47', 'password47', 0),
-  ('user48', 'password48', 0),
-  ('user49', 'password49', 0),
-  ('user50', 'password50', 0);
+-- Set the number of users and songs
+SET @num_users = 50;
+SET @num_songs = 100;
+
+-- Set the desired number of dummy data rows
+SET @num_dummy_data = 4000; -- Adjust this number as per your requirement
+
+-- Generate random like values
+INSERT INTO user_likes (user_id, song_id, created_at, type)
+SELECT
+  FLOOR(RAND() * (@num_users - 1 + 1) + 1) AS user_id,
+  FLOOR(RAND() * (@num_songs - 1 + 1) + 1) AS song_id,
+  DATE_FORMAT(FROM_UNIXTIME(UNIX_TIMESTAMP() - RAND() * UNIX_TIMESTAMP()), '%Y-%m-%d') AS created_at,
+  IF(RAND() <= 0.65, 'like', 'dislike') AS type
+FROM
+  (SELECT 1 AS n UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6) t1,
+  (SELECT 1 AS n UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6) t2
+LIMIT @num_dummy_data;

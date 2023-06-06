@@ -29,6 +29,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && isset($_GET['a
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // Create the user_likes table if it doesn't exist
+    $stmt = $pdo->prepare("CREATE TABLE IF NOT EXISTS user_likes (
+      id INT NOT NULL AUTO_INCREMENT,
+      user_id INT NOT NULL,
+      song_id INT NOT NULL,
+      created_at DATE NOT NULL,
+      type VARCHAR(255) NOT NULL,
+      PRIMARY KEY (id),
+      CONSTRAINT unique_user_song UNIQUE (user_id, song_id)
+    )");
+    $stmt->execute();
+
     if ($action === 'like') {
       // Check if the user has already liked or disliked the song
       $stmt = $pdo->prepare("SELECT * FROM user_likes WHERE user_id = :user_id AND song_id = :song_id");
@@ -78,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && isset($_GET['a
           $stmt = $pdo->prepare("DELETE FROM user_likes WHERE user_id = :user_id AND song_id = :song_id");
           $stmt->bindParam(':user_id', $userId);
           $stmt->bindParam(':song_id', $songId);
-           $stmt->execute();
+          $stmt->execute();
         }
       } else {
         // User has not previously liked or disliked the song, so insert a new row with type 'dislike'
@@ -89,14 +101,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && isset($_GET['a
       }
     }
 
-
     // Get the updated number of likes for the song
     $stmt = $pdo->prepare("SELECT COUNT(*) AS likes_count FROM user_likes WHERE song_id = :song_id AND type = 'like'");
     $stmt->bindParam(':song_id', $songId);
     $stmt->execute();
     $likesCount = $stmt->fetch(PDO::FETCH_ASSOC)['likes_count'];
 
-    // Get the number of dislikes for the song
+    // Get the updated number of dislikes for the song
     $stmt = $pdo->prepare("SELECT COUNT(*) AS dislikes_count FROM user_likes WHERE song_id = :song_id AND type = 'dislike'");
     $stmt->bindParam(':song_id', $songId);
     $stmt->execute();
@@ -106,7 +117,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id']) && isset($_GET['a
     $totalLikesCount = $likesCount - $dislikesCount;
 
     // Echo the total likes count for the song
-    echo "<script>document.getElementById('likes_$songId').textContent = $totalLikesCount;</script>";
+    echo "<script>document.getElementById('likes_$songId').textContent = $likesCount;</script>";
+    echo "<script>document.getElementById('dislikes_$songId').textContent = $dislikesCount;</script>";
 
     // Redirect back to the index.php page
     header('Location: index.php');
