@@ -145,28 +145,6 @@ VALUES
 (0, 99, 'Come Through', 'H.E.R. Featuring Chris Brown', NULL, 64, 16),
 (0, 100, 'Nevada', 'YoungBoy Never Broke Again', NULL, 58, 4);
 
--- Inserting 65% 'like' rows
-INSERT INTO user_likes (user_id, song_id, created_at, type)
-SELECT
-    FLOOR(RAND() * (SELECT COUNT(*) FROM users)) + 1,
-    FLOOR(RAND() * (SELECT COUNT(*) FROM hot100)) + 1,
-    CURRENT_DATE(),
-    'like'
-FROM
-    (SELECT COUNT(*) * 0.65 AS num_likes FROM user_likes) AS l
-WHERE RAND() <= l.num_likes;
-
--- Inserting 35% 'dislike' rows
-INSERT INTO user_likes (user_id, song_id, created_at, type)
-SELECT
-    FLOOR(RAND() * (SELECT COUNT(*) FROM users)) + 1,
-    FLOOR(RAND() * (SELECT COUNT(*) FROM hot100)) + 1,
-    CURRENT_DATE(),
-    'dislike'
-FROM
-    (SELECT COUNT(*) * 0.35 AS num_dislikes FROM user_likes) AS d
-WHERE RAND() <= d.num_dislikes;
-
 -- users
 INSERT INTO users (username, password, is_admin) VALUES
   ('a', '$2y$10$cOz0BNV.Al19oPEsTszAxOSF1hfb6Ib36kwlNu6gu4g6Pqc9uogGS', 1),
